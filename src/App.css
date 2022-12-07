@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.speakers::-webkit-scrollbar {
+  display: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+  background: gainsboro;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+  background: #CA15EB;
+  border-radius: 20px;
+  }

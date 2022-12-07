@@ -20,7 +20,7 @@ const Speakers = () => {
             </div>
             <div className='flex   flex-col mt-10'>
                 <div className='flex items-center justify-center'>
-                <img style={{maxWidth:240}} src={men} alt="Car"></img>
+                    <img style={{ maxWidth: 240 }} src={men} alt="Car"></img>
                 </div>
             </div>
 
@@ -31,13 +31,9 @@ const Speakers = () => {
         </div>
     )
     return (
-
-        <div style={{display:"grid",gridAutoFlow:"column",overflowX:"auto"}} className="w-full mt-24">
-            {/* <About></About>
-            <About></About>
-            <About></About>
-            <About></About>
-            <About></About> */}
+        
+        <div style={{ display: "grid", gridAutoFlow: "column", overflowX: "auto" }} className="w-full mt-8 speakers">
+            
             {card}
             {card}
             {card}

@@ -15,14 +15,15 @@ const Navbar = () => {
   ];
   let [open, setOpen] = useState(false);
   return (
-    <div className='bg-[#000] shadow-md w-full fixed top-0 left-0 bg-red-500'>
+    <div className=' shadow-md w-full fixed top-0 left-0 '>
       <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
         <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
       text-gray-800'>
           <span className='text-3xl text-indigo-600 mr-1 pt-2'>
             <ion-icon name="logo-ionic"></ion-icon>
           </span>
-          Electro-Fest
+           <h1 className='text-black font-bold text-2xl'>Electro-Fest</h1>
+          
         </div>
 
         <div onClick={() => setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'>
