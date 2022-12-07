@@ -12,7 +12,7 @@ const Contact = () => {
         <div className="mt-24 w-fit bg-cover h-fit overflow-hidden">
             <h1 className="text-5xl font-bold text-[#62006D] text-center">Contact Us</h1>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 py-2 px-4 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 py-2 px-4 ">
                 <div className="py-16">
                     <input className="border border-2 border-[#CA15EB] h-10 rounded-full w-full px-4 bg-[#FFD60B] shadow shadow-md" placeholder="Email"></input>
                     <input className="border border-2 border-[#CA15EB] h-10 rounded-full w-full px-4 bg-[#FFD60B] shadow shadow-md mt-6" placeholder="Full Name"></input>
@@ -32,7 +32,7 @@ const Contact = () => {
 
                     <h1 className="text-2xl font-bold text-[#62006D] mt-10 text-center">You can find us on </h1>
                     <h1 className="text-2xl font-bold text-[#62006D]  text-center">Social Media as well! </h1>
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center mt-10">
                         <img className="mr-2" src={link} alt="Facebook max-w-20"></img>
                         <img className="mr-2" src={twi} alt="Facebook"></img>
                         <img src={link} alt="Facebook"></img>
@@ -41,7 +41,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="flex justify-center items-center bg-gray-900">
+            <div className="flex justify-center items-center bg-gray-900 mt-24">
                 <img className="" src={logo} alt="Logo"></img>
                 <img className="" src={cse} style={{ maxWidth: 120 }} alt="CSE"></img>
             </div>
