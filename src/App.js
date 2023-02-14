@@ -2,23 +2,21 @@
 
 
 import './App.css';
-import Home from './components/Home';
-import About from './components/About';
-import Speakers from './components/Speakers';
-import Contact from './components/Contact';
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Layout from './components/Layout';
 function App() {
   return (
-    // <div className='bg-red-500'>
-     <div className="home"> 
-        <Home></Home>
-        <h1 className='font-bold text-4xl text-[#CA15EB] text-center mt-24'>OUR SPEAKERS</h1>
-        <Speakers></Speakers>
-        <About></About>
-        <Contact></Contact>
-     </div>
-      
-      
-     
+
+  // <Router>
+  //   <Routes>
+  //     <Route path={'/Annonces'} element={<Annonce />}></Route>
+  //     <Route path={'/Favoris'} element={<Favoris />}></Route>
+  //   </Routes>
+  // </Router>
+
+  <Layout/>
+
   );
 }
 
