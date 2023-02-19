@@ -9,7 +9,7 @@ const Home = () => {
         <div>
 
         
-        <div className='flex-rows  md:flex items-center justify-between  gap-4 px-4 pt-20'>
+        <div className='flex-rows w-full md:flex items-center justify-between  gap-4 px-4 pt-20'>
             <div className='block md:hidden mb-8 w-full flex items-center justify-center'>
                 <img style={{ objectFit:"cover" }} src={heroImg} alt='' className='rounded-lg border-2 border-[#faa935] w-full h-full'></img>
             </div>
@@ -46,7 +46,10 @@ const Home = () => {
 
         
         {/* ************************the SearchBar ***************** */}
+         <div className='px-4 lg:grid lg:grid-cols-2'>
         <SearchBar></SearchBar>
+        </div> 
+         
         </div>
 
 
