@@ -6,7 +6,7 @@ const SearchBar = () => {
 
     return (
         // rounded-md md:rounded-full border-2 py-3 px-4 shadow-2xl mt-10 md:ml-8 mx-2 md:mx-0
-        <div className="grid grid-cols-1 md:grid-cols-3  border-2 rounded-lg md:rounded-full py-2 shadow-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-3  border-2 rounded-lg md:rounded-full py-2 shadow-xl">
 
             <div className="flex items-center  px-2 md:border-r-2 ">
                 <LocationOn color='secondary'></LocationOn>
