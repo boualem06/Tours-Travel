@@ -16,8 +16,8 @@ function App() {
   //   </Routes>
   // </Router>
 
-  // <Layout/>
-<Card></Card>
+  <Layout/>
+
   );
 }
 
