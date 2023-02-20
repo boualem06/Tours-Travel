@@ -5,6 +5,7 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from './components/Layout';
+import Card from './components/Card';
 function App() {
   return (
 
@@ -15,8 +16,8 @@ function App() {
   //   </Routes>
   // </Router>
 
-  <Layout/>
-
+  // <Layout/>
+<Card></Card>
   );
 }
 

@@ -5,7 +5,7 @@ import guide from "../assets/images/guide.png"
 const Offers = () => {
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8">
             <div className="flex-rows items-center justify-center">
                 <h1 className="section__subtitle__two ">What we serve </h1>
                 <h1 className="text-2xl font-bold">We Offer Our Best Services </h1>
