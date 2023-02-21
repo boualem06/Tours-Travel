@@ -9,7 +9,7 @@ const TourDetail = () => {
     return (
         <div className="lg:px-52 md:px-20 px-4">
             <div className="flex-rows sm:flex w-full ">
-                <img src={tour} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-xl"></img>
+                <img src={tour} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img>
 
 
 

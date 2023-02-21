@@ -7,6 +7,7 @@ const Layout=()=>{
         <Header></Header>
         <div className="mt-28"></div>
         <Routers></Routers>
+        <div className="mb-16"></div>
         <Footer></Footer>
          </>
     )
