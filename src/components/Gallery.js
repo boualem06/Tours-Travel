@@ -29,6 +29,7 @@ const Gallery = () => {
                 <img class="rounded-lg transition duration-500 ease-in-out transform hover:scale-110 " src={tour7} alt="" />
                 <img class=" rounded-lg transition duration-500 ease-in-out transform hover:scale-110 " src={tour} alt="" />
             </div>
+            
         </div>
     )
 }
