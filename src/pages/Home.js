@@ -6,6 +6,7 @@ import Subtitle from '../shared/Subtitle'
 import SearchBar from '../components/SearchBar'
 import Offers from '../components/Offers'
 import Subscribe from '../components/Subscribe'
+import FeaturedTours from './FeaturedTours'
 const Home = () => {
     return (
         <div >
@@ -53,10 +54,17 @@ const Home = () => {
             <div className='lg:px-36 px-2 md:px-20 mt-16'>
                 <Offers></Offers>
             </div>
+
+            <div className='mt-32 lg:px-32 md:px-20 px-2'>
+                <FeaturedTours></FeaturedTours>
+            </div>
+
+
             <div className='mt-10'>
                 <Subscribe></Subscribe>
             </div>
 
+           
 
         </div>
 
