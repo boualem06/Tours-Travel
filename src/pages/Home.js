@@ -5,9 +5,10 @@ import worldImg from '../assets/images/world.png'
 import Subtitle from '../shared/Subtitle'
 import SearchBar from '../components/SearchBar'
 import Offers from '../components/Offers'
+import Subscribe from '../components/Subscribe'
 const Home = () => {
     return (
-        <div>
+        <div >
 
 
             <div className='flex-rows w-full md:grid md:grid-cols-2 items-center justify-between  gap-4 lg:px-32 md:px-20 px-2 pt-4'>
@@ -52,7 +53,9 @@ const Home = () => {
             <div className='lg:px-36 px-2 md:px-20 mt-16'>
                 <Offers></Offers>
             </div>
-
+            <div className='mt-10'>
+                <Subscribe></Subscribe>
+            </div>
 
 
         </div>

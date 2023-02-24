@@ -26,7 +26,7 @@ const SearchResult = () => {
                 </div>
             </div>
 
-        <div className="mt-20">
+        <div className="mt-20 mb-0">
         <Subscribe></Subscribe>
         </div>
         
