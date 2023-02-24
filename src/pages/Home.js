@@ -7,6 +7,8 @@ import SearchBar from '../components/SearchBar'
 import Offers from '../components/Offers'
 import Subscribe from '../components/Subscribe'
 import FeaturedTours from './FeaturedTours'
+import Experience from '../components/Experience'
+import Gallery from '../components/Gallery'
 const Home = () => {
     return (
         <div >
@@ -58,6 +60,19 @@ const Home = () => {
             <div className='mt-32 lg:px-32 md:px-20 px-2'>
                 <FeaturedTours></FeaturedTours>
             </div>
+            
+
+            <div className='mt-32 lg:px-32 md:px-20 px-2 mb-20'>
+                <Experience></Experience>
+            </div>
+
+            <div className='mt-32 lg:px-32 md:px-20 px-2 mb-20 w-full'>
+                <Gallery></Gallery>
+            </div>
+
+
+            
+
 
 
             <div className='mt-10'>

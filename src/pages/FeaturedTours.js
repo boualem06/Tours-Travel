@@ -11,6 +11,8 @@ const FeaturedTours = () => {
                     <Card></Card>
                     <Card></Card>
                     <Card></Card>
+                    <Card></Card>
+                    <Card></Card>
 
                 </div>
             </div>
