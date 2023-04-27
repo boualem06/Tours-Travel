@@ -1,21 +1,75 @@
-import tour from "../assets/images/tour-img04.jpg"
+import tourimg from "../assets/images/tour-img04.jpg"
 import Rating from '@material-ui/lab/Rating';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LocationOn from '@material-ui/icons/LocationOn';
+import { useParams } from 'react-router-dom';
+import Review from "../components/review";
+
 
 const TourDetail = () => {
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
+    const [tour,setTour]=useState({})
+    const { id } = useParams();
+    const [review,setReview]=useState({
+        reviewText:"",
+        rating:0
+    })
+
+    useEffect(()=>{
+       const  getTheTourDetail=async()=>{
+        let headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "accestoken": localStorage.getItem('token')
+           }
+           
+           let response = await fetch(`http://localhost:5000/getTours/${id}`, { 
+             method: "GET",
+             headers: headersList
+           });
+           
+           let data = await response.json();
+           setTour(data)
+           console.log(data);
+        }
+        
+        getTheTourDetail()
+    },[])
+
+    // const addReview=()=>{
+    //     let headersList = {
+    //         "Accept": "*/*",
+    //         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    //         "accestoken": localStorage.getItem('token')
+    //        }
+           
+    //        let bodyContent = JSON.stringify({
+    //          "productId":"6448f9a158811f0b48831e22",
+    //          "username":"Boualem",
+    //          "reviewText":"this is the review text 6",
+    //          "rating":2
+    //        });
+           
+    //        let response = await fetch("http://localhost:5000/NewReview", { 
+    //          method: "POST",
+    //          body: bodyContent,
+    //          headers: headersList
+    //        });
+           
+    //        let data = await response.text();
+    //        console.log(data);
+           
+    // }
+
     return (
-        <div className="lg:px-52 md:px-20 px-4">
+        <div className="lg:px-52 md:px-20 px-4 mb-8">
             <div className="flex-rows sm:flex w-full ">
-                <img src={tour} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img>
-
-
+                <img src={tourimg} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img>
 
                 <div className="md:w-1/3 lg:w-1/4 border md:ml-4 px-8 py-4 mt-4 md:mt-0">
                     <div className="flex w-full justify-between pb-4 border-b-2 border-b-gray-100 ">
-                        <h1><span className="text-lg font-bold">$99</span ><span className="text-gray-400">/per person</span></h1>
+                        <h1><span className="text-lg font-bold">${tour.price}</span ><span className="text-gray-400">/per person</span></h1>
                         <Rating
                             value={value}
                             precision={0.5}
@@ -34,8 +88,8 @@ const TourDetail = () => {
                     </div>
 
                     <div className="flex w-full justify-between mt-4">
-                        <h1>$99 x 1 person</h1>
-                        <h1>$99</h1>
+                        <h1>${tour.price} x 1 person</h1>
+                        <h1>${tour.price}</h1>
                     </div>
 
                     <div className="flex w-full justify-between mt-2">
@@ -45,7 +99,7 @@ const TourDetail = () => {
 
                     <div className="flex w-full justify-between mt-2">
                         <h1 className="font-bold">Total</h1>
-                        <h1 className="font-bold">$109</h1>
+                        <h1 className="font-bold">${tour.price + 10}</h1>
                     </div>
 
                     <button className="w-full text-white font-bold items-center justify-center bg-[#faa935] mt-4 rounded-full py-1 hover:shadow-lg">Book Now</button>
@@ -54,7 +108,7 @@ const TourDetail = () => {
 
             <div className="lg:flex lg:justify-between ">
                 <div className="border-2 mt-16 px-4 py-8 shadow-md ">
-                    <h1 className="text-xl font-bold  mb-2">Snowy Mountains, Thailand</h1>
+                    <h1 className="text-xl font-bold  mb-2">{tour.title} <span>,</span> {tour.address} </h1>
                     <Rating
                         value={value}
                         precision={0.5}
@@ -62,22 +116,22 @@ const TourDetail = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                         <div className="flex ">
                             <LocationOn></LocationOn>
-                            <h1 className="text-gray-400 md:ml-2 md:mr-4">Bangkok</h1>
+                            <h1 className="text-gray-400 md:ml-2 md:mr-4">{tour.city}</h1>
                         </div>
 
                         <div className="flex ">
                             <LocationOn></LocationOn>
-                            <h1 className="text-gray-400 md:ml-2 md:mr-4">$93 /per person</h1>
+                            <h1 className="text-gray-400 md:ml-2 md:mr-4">${tour.price} /per person</h1>
                         </div>
 
                         <div className="flex ">
                             <LocationOn></LocationOn>
-                            <h1 className="text-gray-400 md:ml-2 md:mr-4">8 people</h1>
+                            <h1 className="text-gray-400 md:ml-2 md:mr-4">{tour.maxGroupSize} people</h1>
                         </div>
                     </div>
 
                     <h1 className="text-lg font-bold mt-8 ">Description</h1>
-                    <p className="text-gray-400">this is the description</p>
+                    <p className="text-gray-400">{tour.desc}</p>
 
                 </div>
 
@@ -93,6 +147,9 @@ const TourDetail = () => {
                         <input className=" focus:outline-0  w-full " placeholder="Show your thoughts..."></input>
                         <button className="bg-[#faa935] text-white font-bold px-8 py-2 rounded-full">Submit</button>
                     </div>
+                    <Review></Review>
+                    <Review></Review>
+                    <Review></Review>
                 </div>
 
             </div>
