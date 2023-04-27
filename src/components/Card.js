@@ -14,10 +14,6 @@ const Card = (props) => {
 
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
-    // const classes = useStyles();
-    useEffect(()=>{
-        console.log(props.tour._id)
-    },[])
     return (
         <div className="rounded-md border-2 border w-fit shadow-lg">
             <img style={{ height: "15rem" }} src={tour1} alt="Tour" className="rounded-md"></img>

@@ -8,63 +8,80 @@ import Review from "../components/review";
 
 const TourDetail = () => {
     const [value, setValue] = React.useState(2);
-    const [hover, setHover] = React.useState(-1);
-    const [tour,setTour]=useState({})
+    const [tour, setTour] = useState({})
     const { id } = useParams();
-    const [review,setReview]=useState({
-        reviewText:"",
-        rating:0
-    })
+    const [rating, setRating] = useState(0)
+    const [reviewText, setReviewText] = useState("")
+    const [reviewsList, setReviewsList] = useState([])
+    const [showAll,setShowAll]=useState(false)
+    useEffect(() => {
+        const getTheTourDetail = async () => {
+            let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "accestoken": localStorage.getItem('token')
+            }
 
-    useEffect(()=>{
-       const  getTheTourDetail=async()=>{
+            let response = await fetch(`http://localhost:5000/getTours/${id}`, {
+                method: "GET",
+                headers: headersList
+            });
+
+            let data = await response.json();
+            setTour(data)
+        }
+
+        const getTourReview = async () => {
+            let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "accestoken": localStorage.getItem('token')
+            }
+
+            let response = await fetch(`http://localhost:5000/getTourReviews/${id}`, {
+                method: "GET",
+                headers: headersList
+            });
+
+            let data = await response.json();
+            setReviewsList(data)
+
+        }
+
+        getTheTourDetail()
+        getTourReview()
+    }, [])
+
+    const addReview = async () => {
+
         let headersList = {
             "Accept": "*/*",
             "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-            "accestoken": localStorage.getItem('token')
-           }
-           
-           let response = await fetch(`http://localhost:5000/getTours/${id}`, { 
-             method: "GET",
-             headers: headersList
-           });
-           
-           let data = await response.json();
-           setTour(data)
-           console.log(data);
+            "accestoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmU2ZTM2YTY2NWE2M2NmNTg0OGY5MCIsImlhdCI6MTY4MjU4MjU4OSwiZXhwIjoxNjg1MTc0NTg5fQ.qa1NsmCDqstnEUj-hDd0F6b1AW76Yat6qG8uAcIeHlY",
+            "Content-Type": "application/json"
         }
-        
-        getTheTourDetail()
-    },[])
 
-    // const addReview=()=>{
-    //     let headersList = {
-    //         "Accept": "*/*",
-    //         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-    //         "accestoken": localStorage.getItem('token')
-    //        }
-           
-    //        let bodyContent = JSON.stringify({
-    //          "productId":"6448f9a158811f0b48831e22",
-    //          "username":"Boualem",
-    //          "reviewText":"this is the review text 6",
-    //          "rating":2
-    //        });
-           
-    //        let response = await fetch("http://localhost:5000/NewReview", { 
-    //          method: "POST",
-    //          body: bodyContent,
-    //          headers: headersList
-    //        });
-           
-    //        let data = await response.text();
-    //        console.log(data);
-           
-    // }
+        let bodyContent = JSON.stringify({
+            "productId": id,
+            "reviewText": reviewText,
+            "rating": rating
+        });
+
+        let response = await fetch("http://localhost:5000/NewReview", {
+            method: "POST",
+            body: bodyContent,
+            headers: headersList
+        });
+
+        let data = await response.json();
+        console.log(data);
+
+
+    }
 
     return (
         <div className="lg:px-52 md:px-20 px-4 mb-8">
-            <div className="flex-rows sm:flex w-full ">
+            <div className="flex-rows md:flex w-full ">
                 <img src={tourimg} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img>
 
                 <div className="md:w-1/3 lg:w-1/4 border md:ml-4 px-8 py-4 mt-4 md:mt-0">
@@ -137,19 +154,32 @@ const TourDetail = () => {
 
 
                 <div className="border-2 mt-16 px-4 py-8 shadow-md lg:w-1/2 ">
-                    <h1 className="text-lg font-bold  mb-3">Reviews(<span>0 reviews</span>) </h1>
+                    <h1 className="text-lg font-bold  mb-3">Reviews(<span>{reviewsList.length}</span>) </h1>
                     <Rating
-                        value={value}
+                        onChange={(e) => { setRating(e.target.value) }}
+                        value={rating}
                         precision={0.5}
                     />
 
-                    <div className="py-3 rounded-full px-2 w-full border-2 flex justify-between lg:mt-4">
-                        <input className=" focus:outline-0  w-full " placeholder="Show your thoughts..."></input>
-                        <button className="bg-[#faa935] text-white font-bold px-8 py-2 rounded-full">Submit</button>
+                    <div className="py-3 rounded-full px-2 w-full border-2 flex justify-between lg:mt-4 mb-6">
+                        <input onChange={(e) => { setReviewText(e.target.value) }} className=" focus:outline-0  w-full " placeholder="Show your thoughts..."></input>
+                        <button onClick={() => { addReview() }} className="bg-[#faa935] text-white font-bold px-8 py-2 rounded-full">Submit</button>
                     </div>
-                    <Review></Review>
-                    <Review></Review>
-                    <Review></Review>
+
+                    {!showAll ? reviewsList.slice(0,3).map((elem) => {
+                        return (
+                            <Review review={elem}></Review>
+                        )
+                    }):
+                    reviewsList.map((elem) => {
+                        return (
+                            <Review review={elem}></Review>
+                        )
+                    })
+                    }
+
+                    <div className="w-full text-center"><button onClick={()=>setShowAll(!showAll)} className="bg-gray-200 hover:bg-gray-300 px-4 py-2 font-bold rounded-md" > {!showAll ?<span>Show All</span>:<span>Show less</span>} </button> </div>
+
                 </div>
 
             </div>
