@@ -14,6 +14,7 @@ const TourDetail = () => {
     const [reviewText, setReviewText] = useState("")
     const [reviewsList, setReviewsList] = useState([])
     const [showAll,setShowAll]=useState(false)
+    const [userInfo,setUserInfo]=useState({})
     useEffect(() => {
         const getTheTourDetail = async () => {
             let headersList = {
@@ -48,12 +49,40 @@ const TourDetail = () => {
 
         }
 
+        const getMe=async()=>{
+            let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "accestoken": localStorage.getItem('token')
+               }
+               
+               let response = await fetch("http://localhost:5000/me", { 
+                 method: "GET",
+                 headers: headersList
+               });
+               
+               let data = await response.json();
+               setUserInfo(data)
+               console.log(data);
+               
+        }
+        getMe()
         getTheTourDetail()
         getTourReview()
     }, [])
 
     const addReview = async () => {
 
+
+
+        const newItem={
+            "productId": id,
+            "reviewText": reviewText,
+            "rating": rating,
+            "username":userInfo.name,
+            "updatedAt":new Date().toISOString()
+        }
+        setReviewsList(prevArray => [...prevArray,newItem])
         let headersList = {
             "Accept": "*/*",
             "User-Agent": "Thunder Client (https://www.thunderclient.com)",

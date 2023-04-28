@@ -1,6 +1,7 @@
 import tour1 from "../assets/images/tour-img01.jpg"
 // LocationOn
 import LocationOn from '@material-ui/icons/LocationOn';
+import { Link } from "react-router-dom"
 
 import React, { useEffect } from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +15,9 @@ const Card = (props) => {
 
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
+   
     return (
+        <Link to={`/tours/${props.tour._id}`}>
         <div className="rounded-md border-2 border w-fit shadow-lg">
             <img style={{ height: "15rem" }} src={tour1} alt="Tour" className="rounded-md"></img>
             <div className="mt-4 px-3 pb-3">
@@ -40,13 +43,8 @@ const Card = (props) => {
             </div>
         </div>
 
+        </Link>
 
-
-
-        // <div className={classes.root}>
-
-
-        //   </div>
     )
 }
 
