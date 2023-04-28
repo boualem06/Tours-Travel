@@ -7,6 +7,7 @@ import SearchResult from "../pages/SearchResult";
 import TourDetail from "../pages/TourDetail";
 import Tours from "../pages/Tours";
 import PrivateRoutes from "../components/PrivateRoutes";
+import Admin from "../pages/Admin";
 const Routers = () => {
     return (
         <Routes>
@@ -16,6 +17,8 @@ const Routers = () => {
                 <Route path='/tours/search' element={<SearchResult></SearchResult>}></Route>
                 <Route path='/tours/:id' element={<TourDetail></TourDetail>}></Route>
                 <Route path='/tours' element={<Tours></Tours>}></Route>
+                <Route path='/admin' element={<Admin></Admin>}></Route>
+
             </Route>
             <Route path='/login' element={<Login></Login>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>

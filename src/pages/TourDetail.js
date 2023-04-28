@@ -13,8 +13,19 @@ const TourDetail = () => {
     const [rating, setRating] = useState(0)
     const [reviewText, setReviewText] = useState("")
     const [reviewsList, setReviewsList] = useState([])
-    const [showAll,setShowAll]=useState(false)
-    const [userInfo,setUserInfo]=useState({})
+    const [showAll, setShowAll] = useState(false)
+    const [userInfo, setUserInfo] = useState({})
+    const [bookingInfo,setBookingInfo] = useState(
+        {
+            "productId": "",
+            "username": "",
+            "phone": 0,
+            "date": "",
+            "Guests": 0,
+            "total": 0,
+            title:""
+        }
+    )
     useEffect(() => {
         const getTheTourDetail = async () => {
             let headersList = {
@@ -49,22 +60,22 @@ const TourDetail = () => {
 
         }
 
-        const getMe=async()=>{
+        const getMe = async () => {
             let headersList = {
                 "Accept": "*/*",
                 "User-Agent": "Thunder Client (https://www.thunderclient.com)",
                 "accestoken": localStorage.getItem('token')
-               }
-               
-               let response = await fetch("http://localhost:5000/me", { 
-                 method: "GET",
-                 headers: headersList
-               });
-               
-               let data = await response.json();
-               setUserInfo(data)
-               console.log(data);
-               
+            }
+
+            let response = await fetch("http://localhost:5000/me", {
+                method: "GET",
+                headers: headersList
+            });
+
+            let data = await response.json();
+            setUserInfo(data)
+            console.log(data);
+
         }
         getMe()
         getTheTourDetail()
@@ -75,14 +86,14 @@ const TourDetail = () => {
 
 
 
-        const newItem={
+        const newItem = {
             "productId": id,
             "reviewText": reviewText,
             "rating": rating,
-            "username":userInfo.name,
-            "updatedAt":new Date().toISOString()
+            "username": userInfo.name,
+            "updatedAt": new Date().toISOString()
         }
-        setReviewsList(prevArray => [...prevArray,newItem])
+        setReviewsList(prevArray => [...prevArray, newItem])
         let headersList = {
             "Accept": "*/*",
             "User-Agent": "Thunder Client (https://www.thunderclient.com)",
@@ -108,6 +119,40 @@ const TourDetail = () => {
 
     }
 
+    const submitBook=async()=>{
+        setBookingInfo({...bookingInfo,productId:id})
+        setBookingInfo({...bookingInfo,total:tour.price*bookingInfo.Guests})
+        setBookingInfo({...bookingInfo,title:tour.title})
+
+        let headersList = {
+            "Accept": "*/*",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "accestoken": localStorage.getItem('token'),
+            "Content-Type": "application/json"
+           }
+           
+           let bodyContent = JSON.stringify({
+             "productId":id,
+             "username":"user" ,
+             "phone":bookingInfo.phone ,
+             "date":bookingInfo.date ,
+             "Guests":bookingInfo.Guests  ,
+             "total":tour.price*bookingInfo.Guests,
+             "title":tour.title
+           });
+           
+           let response = await fetch("http://localhost:5000/NewBook", { 
+             method: "POST",
+             body: bodyContent,
+             headers: headersList
+           });
+           
+           let data = await response.json();
+           console.log(data);
+           
+           
+    }
+
     return (
         <div className="lg:px-52 md:px-20 px-4 mb-8">
             <div className="flex-rows md:flex w-full ">
@@ -125,11 +170,11 @@ const TourDetail = () => {
                     <h1 className="text-lg font-bold mt-6">information</h1>
 
                     <div className=" border-2 flex-rows px-6 py-10 mt-6">
-                        <input className=" focus:outline-0 pb-2 border-b-2 w-full" placeholder="Full name "></input>
-                        <input className=" focus:outline-0 pb-2 border-b-2 w-full mt-6" placeholder="Phone"></input>
+                        <input  className=" focus:outline-0 pb-2 border-b-2 w-full" placeholder="Full name "></input>
+                        <input onChange={(e)=>{setBookingInfo({...bookingInfo,phone:e.target.value})}} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6" placeholder="Phone"></input>
                         <div className="flex w-full justify-between">
-                            <input className=" focus:outline-0 pb-2 border-b-2 mt-6" type="date"></input>
-                            <input className=" focus:outline-0 pb-2 border-b-2 w-full mt-6 ml-10" placeholder="Guest"></input>
+                            <input onChange={(e)=>{setBookingInfo({...bookingInfo,date:`${e.target.value}`})}} className=" focus:outline-0 pb-2 border-b-2 mt-6" type="date"></input>
+                            <input onChange={(e)=>{setBookingInfo({...bookingInfo,Guests:`${e.target.value}`})}} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6 ml-10" type="number" placeholder="Guest"></input>
                         </div>
                     </div>
 
@@ -148,7 +193,7 @@ const TourDetail = () => {
                         <h1 className="font-bold">${tour.price + 10}</h1>
                     </div>
 
-                    <button className="w-full text-white font-bold items-center justify-center bg-[#faa935] mt-4 rounded-full py-1 hover:shadow-lg">Book Now</button>
+                    <button onClick={()=>{submitBook()}} className="w-full text-white font-bold items-center justify-center bg-[#faa935] mt-4 rounded-full py-1 hover:shadow-lg">Book Now</button>
                 </div>
             </div>
 
@@ -195,19 +240,19 @@ const TourDetail = () => {
                         <button onClick={() => { addReview() }} className="bg-[#faa935] text-white font-bold px-8 py-2 rounded-full">Submit</button>
                     </div>
 
-                    {!showAll ? reviewsList.slice(0,3).map((elem) => {
+                    {!showAll ? reviewsList.slice(0, 3).map((elem) => {
                         return (
                             <Review review={elem}></Review>
                         )
-                    }):
-                    reviewsList.map((elem) => {
-                        return (
-                            <Review review={elem}></Review>
-                        )
-                    })
+                    }) :
+                        reviewsList.map((elem) => {
+                            return (
+                                <Review review={elem}></Review>
+                            )
+                        })
                     }
 
-                    <div className="w-full text-center"><button onClick={()=>setShowAll(!showAll)} className="bg-gray-200 hover:bg-gray-300 px-4 py-2 font-bold rounded-md" > {!showAll ?<span>Show All</span>:<span>Show less</span>} </button> </div>
+                    <div className="w-full text-center"><button onClick={() => setShowAll(!showAll)} className="bg-gray-200 hover:bg-gray-300 px-4 py-2 font-bold rounded-md" > {!showAll ? <span>Show All</span> : <span>Show less</span>} </button> </div>
 
                 </div>
 
