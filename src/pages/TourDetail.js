@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import LocationOn from '@material-ui/icons/LocationOn';
 import { useParams } from 'react-router-dom';
 import Review from "../components/review";
-
+import { Image } from 'cloudinary-react';
 
 const TourDetail = () => {
     const [value, setValue] = React.useState(2);
@@ -156,8 +156,8 @@ const TourDetail = () => {
     return (
         <div className="lg:px-52 md:px-20 px-4 mb-8">
             <div className="flex-rows md:flex w-full ">
-                <img src={tourimg} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img>
-
+                {/* <img src={tourimg} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img> */}
+                <Image style={{ height: "36rem",width:"100%" }}   cloudName="dc7suzbrg" publicId={tour.photo} />
                 <div className="md:w-1/3 lg:w-1/4 border md:ml-4 px-8 py-4 mt-4 md:mt-0">
                     <div className="flex w-full justify-between pb-4 border-b-2 border-b-gray-100 ">
                         <h1><span className="text-lg font-bold">${tour.price}</span ><span className="text-gray-400">/per person</span></h1>
@@ -197,8 +197,8 @@ const TourDetail = () => {
                 </div>
             </div>
 
-            <div className="lg:flex lg:justify-between ">
-                <div className="border-2 mt-16 px-4 py-8 shadow-md ">
+            <div className="lg:flex lg:items-start w-full grid gap-4">
+                <div className="border-2 mt-16 px-4 py-8 shadow-md lg:w-1/2 ">
                     <h1 className="text-xl font-bold  mb-2">{tour.title} <span>,</span> {tour.address} </h1>
                     <Rating
                         value={value}
