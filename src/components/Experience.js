@@ -3,8 +3,6 @@ const Experience = () => {
 
     return (
         <div className=" grid grid-cols-1 md:grid-cols-2">
-            {/* grid grid-cols-1 md:grid-cols-2 */}
-            {/* flex justify-between items-center */}
             <div className="lg:mt-24">
                 <h1 className="font-bold text-3xl "> With our all experience we will
                     serve you </h1>

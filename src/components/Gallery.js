@@ -9,7 +9,6 @@ import tour7 from "../assets/images/gallery-07.jpg"
 const Gallery = () => {
 
     return (
-        // grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5
         <div>
             <h1 className="font-bold text-3xl mb-6">Visit our customers tour gallery</h1>
 

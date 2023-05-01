@@ -1,7 +1,7 @@
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import Card from "../components/Card"
 
-const Tours=()=>{
+const Tours = () => {
     const [featuredTours, setFeaturedTours] = useState([])
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const Tours=()=>{
 
     }, [])
 
-    return(
+    return (
         <div>
             <h1 className="font-bold text-3xl ">Our  Tours</h1>
             <div className="flex justify-center mt-4 lg:px-4 md:px-3 sm:px-2 px-1 mb-8">

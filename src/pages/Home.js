@@ -60,7 +60,7 @@ const Home = () => {
             <div className='mt-32 lg:px-32 md:px-20 px-2'>
                 <FeaturedTours></FeaturedTours>
             </div>
-            
+
 
             <div className='mt-32 lg:px-32 md:px-20 px-2 mb-20'>
                 <Experience></Experience>
@@ -70,8 +70,8 @@ const Home = () => {
                 <Gallery></Gallery>
             </div>
 
-           
-            
+
+
 
 
 
@@ -79,7 +79,7 @@ const Home = () => {
                 <Subscribe></Subscribe>
             </div>
 
-           
+
 
         </div>
 

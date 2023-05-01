@@ -6,7 +6,6 @@ import LinkedIn from '@material-ui/icons/LinkedIn';
 import LocationOn from '@material-ui/icons/LocationOn';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
-// Facebook  Instagram  GitHub LinkedIn Email Phone
 const Footer = () => {
     return (
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-14 lg:px-32 md:px-20 px-10  py-10 bg-gray-100">

@@ -156,7 +156,6 @@ const TourDetail = () => {
     return (
         <div className="lg:px-52 md:px-20 px-4 mb-8">
             <div className="flex-rows md:flex w-full ">
-                {/* <img src={tourimg} alt="tour" style={{ height: '36rem' }} className="md:w-2/3 lg:w-3/4 rounded-lg"></img> */}
                 <Image style={{ height: "36rem",width:"100%" }}   cloudName="dc7suzbrg" publicId={tour.photo} />
                 <div className="md:w-1/3 lg:w-1/4 border md:ml-4 px-8 py-4 mt-4 md:mt-0">
                     <div className="flex w-full justify-between pb-4 border-b-2 border-b-gray-100 ">

@@ -65,13 +65,12 @@ const NewProduct = () => {
     return (
         <div
 
-            className=" m-2 border-2  border-orange-600 rounded-md px-4 py-2"
+            className=" m-2 border-2  border-orange-600 rounded-md px-4 py-2 md:py-8 lg:py-14"
         >
-            <div className="w-full flex justify-end items-center"><button className="px-2 font-bold text-xl  text-white bg-orange-600 hover:bg-orange-700  rounded-full ">  X </button></div>
             <form onSubmit={handleSubmitFile}>
 
 
-                <div className="grid grid-cols1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
                     <div>
                         <div className="font-bold">Title of the Tour </div>
                         <input
@@ -137,7 +136,7 @@ const NewProduct = () => {
                         <div className="font-bold">description of the Product </div>
                         <textarea
                             onChange={(e) => { setProduct({ ...Product, desc: e.target.value }); }}
-                            rows="2"
+                            rows="1"
                             className="w-full border px-2 py-2 rounded-md border-orange-600"
                             placeholder="Product description "
                         ></textarea>

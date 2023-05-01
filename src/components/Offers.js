@@ -1,7 +1,6 @@
 import weather from "../assets/images/weather.png"
 import customization from "../assets/images/customization.png"
 import guide from "../assets/images/guide.png"
-// import weather from "../assets/images/weather.png"
 const Offers = () => {
 
     return (

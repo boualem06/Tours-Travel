@@ -9,36 +9,37 @@ const Register = () => {
         password: ""
     })
 
-    const [isLogin,setIsLogin]=useState(false)
-    const [error,setError]=useState({})
+    const [isLogin, setIsLogin] = useState(false)
+    const [error, setError] = useState({})
     const submit = () => {
         console.log(userInfo)
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if (!regex.test(userInfo.email)) {
-            setError({message:"invalide email"});
-        }else{
-        fetch('http://127.0.0.1:5000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if (data.status===400){
-                    setError({message:data.message})
-                }
-                else{
-                    setError({})
-                    localStorage.setItem('token', data.token)
-                    setIsLogin(true)
-                }
+            setError({ message: "invalide email" });
+        } else {
+            fetch('http://127.0.0.1:5000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userInfo)
             })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.status === 400) {
+                        setError({ message: data.message })
+                    }
+                    else {
+                        setError({})
+                        localStorage.setItem('token', data.token)
+                        localStorage.setItem('admin', data.admin)
+                        setIsLogin(true)
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
     }
     return (
@@ -52,7 +53,7 @@ const Register = () => {
                         <input onChange={(e) => { setUserInfo({ ...userInfo, password: e.target.value }) }} type="password" className="rounded-md px-2 py-1 mt-10 w-full" placeholder="your password... "></input>
                     </div>
 
-                    <button onClick={submit} className="bg-black text-white mt-16 w-full px-2 py-1 rounded-md font-bold hover:cursor-pointer hover:shadow-md">Login { isLogin && <Navigate to={"/Home"}></Navigate>}</button>
+                    <button onClick={submit} className="bg-black text-white mt-16 w-full px-2 py-1 rounded-md font-bold hover:cursor-pointer hover:shadow-md">Login {isLogin && <Navigate to={"/Home"}></Navigate>}</button>
                     <h1 className="text-white text-sm mt-6 font-bold">Don't have an account ? <Link to={"/register"}><span className="font-bold text-black hover:underline hover:cursor-pointer">Register</span></Link></h1>
                     {error && <h1 className="text-red-500 text-sm mt-6 font-bold">{error.message}</h1>}
 
