@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from './components/Layout';
 import Card from './components/Card';
 import TourDetail from './pages/TourDetail';
+import NewProduct from './components/newProduct';
 function App() {
   return (
 
@@ -18,6 +19,8 @@ function App() {
   // </Router>
 
   <Layout/>
+
+  // <NewProduct></NewProduct>
 
   );
 }

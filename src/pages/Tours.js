@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import Card from "../components/Card"
+
 const Tours=()=>{
     const [featuredTours, setFeaturedTours] = useState([])
 
