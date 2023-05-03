@@ -15,7 +15,7 @@ const TourDetail = () => {
     const [reviewsList, setReviewsList] = useState([])
     const [showAll, setShowAll] = useState(false)
     const [userInfo, setUserInfo] = useState({})
-    const [bookingInfo,setBookingInfo] = useState(
+    const [bookingInfo, setBookingInfo] = useState(
         {
             "productId": "",
             "username": "",
@@ -23,7 +23,7 @@ const TourDetail = () => {
             "date": "",
             "Guests": 0,
             "total": 0,
-            title:""
+            title: ""
         }
     )
     useEffect(() => {
@@ -34,7 +34,7 @@ const TourDetail = () => {
                 "accestoken": localStorage.getItem('token')
             }
 
-            let response = await fetch(`http://localhost:5000/getTours/${id}`, {
+            let response = await fetch(`https://tour-travel-backend.onrender.com/getTours/${id}`, {
                 method: "GET",
                 headers: headersList
             });
@@ -50,7 +50,7 @@ const TourDetail = () => {
                 "accestoken": localStorage.getItem('token')
             }
 
-            let response = await fetch(`http://localhost:5000/getTourReviews/${id}`, {
+            let response = await fetch(`https://tour-travel-backend.onrender.com/getTourReviews/${id}`, {
                 method: "GET",
                 headers: headersList
             });
@@ -67,7 +67,7 @@ const TourDetail = () => {
                 "accestoken": localStorage.getItem('token')
             }
 
-            let response = await fetch("http://localhost:5000/me", {
+            let response = await fetch("https://tour-travel-backend.onrender.com/me", {
                 method: "GET",
                 headers: headersList
             });
@@ -107,7 +107,7 @@ const TourDetail = () => {
             "rating": rating
         });
 
-        let response = await fetch("http://localhost:5000/NewReview", {
+        let response = await fetch("https://tour-travel-backend.onrender.com/NewReview", {
             method: "POST",
             body: bodyContent,
             headers: headersList
@@ -119,44 +119,44 @@ const TourDetail = () => {
 
     }
 
-    const submitBook=async()=>{
-        setBookingInfo({...bookingInfo,productId:id})
-        setBookingInfo({...bookingInfo,total:tour.price*bookingInfo.Guests})
-        setBookingInfo({...bookingInfo,title:tour.title})
+    const submitBook = async () => {
+        setBookingInfo({ ...bookingInfo, productId: id })
+        setBookingInfo({ ...bookingInfo, total: tour.price * bookingInfo.Guests })
+        setBookingInfo({ ...bookingInfo, title: tour.title })
 
         let headersList = {
             "Accept": "*/*",
             "User-Agent": "Thunder Client (https://www.thunderclient.com)",
             "accestoken": localStorage.getItem('token'),
             "Content-Type": "application/json"
-           }
-           
-           let bodyContent = JSON.stringify({
-             "productId":id,
-             "username":"user" ,
-             "phone":bookingInfo.phone ,
-             "date":bookingInfo.date ,
-             "Guests":bookingInfo.Guests  ,
-             "total":tour.price*bookingInfo.Guests,
-             "title":tour.title
-           });
-           
-           let response = await fetch("http://localhost:5000/NewBook", { 
-             method: "POST",
-             body: bodyContent,
-             headers: headersList
-           });
-           
-           let data = await response.json();
-           console.log(data);
-           
-           
+        }
+
+        let bodyContent = JSON.stringify({
+            "productId": id,
+            "username": "user",
+            "phone": bookingInfo.phone,
+            "date": bookingInfo.date,
+            "Guests": bookingInfo.Guests,
+            "total": tour.price * bookingInfo.Guests,
+            "title": tour.title
+        });
+
+        let response = await fetch("https://tour-travel-backend.onrender.com/NewBook", {
+            method: "POST",
+            body: bodyContent,
+            headers: headersList
+        });
+
+        let data = await response.json();
+        console.log(data);
+
+
     }
 
     return (
         <div className="lg:px-52 md:px-20 px-4 mb-8">
             <div className="flex-rows md:flex w-full ">
-                <Image style={{ height: "36rem",width:"100%" }}   cloudName="dc7suzbrg" publicId={tour.photo} />
+                <Image style={{ height: "36rem", width: "100%" }} cloudName="dc7suzbrg" publicId={tour.photo} />
                 <div className="md:w-1/3 lg:w-1/4 border md:ml-4 px-8 py-4 mt-4 md:mt-0">
                     <div className="flex w-full justify-between pb-4 border-b-2 border-b-gray-100 ">
                         <h1><span className="text-lg font-bold">${tour.price}</span ><span className="text-gray-400">/per person</span></h1>
@@ -169,11 +169,11 @@ const TourDetail = () => {
                     <h1 className="text-lg font-bold mt-6">information</h1>
 
                     <div className=" border-2 flex-rows px-6 py-10 mt-6">
-                        <input  className=" focus:outline-0 pb-2 border-b-2 w-full" placeholder="Full name "></input>
-                        <input onChange={(e)=>{setBookingInfo({...bookingInfo,phone:e.target.value})}} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6" placeholder="Phone"></input>
+                        <input className=" focus:outline-0 pb-2 border-b-2 w-full" placeholder="Full name "></input>
+                        <input onChange={(e) => { setBookingInfo({ ...bookingInfo, phone: e.target.value }) }} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6" placeholder="Phone"></input>
                         <div className="flex w-full justify-between">
-                            <input onChange={(e)=>{setBookingInfo({...bookingInfo,date:`${e.target.value}`})}} className=" focus:outline-0 pb-2 border-b-2 mt-6" type="date"></input>
-                            <input onChange={(e)=>{setBookingInfo({...bookingInfo,Guests:`${e.target.value}`})}} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6 ml-10" type="number" placeholder="Guest"></input>
+                            <input onChange={(e) => { setBookingInfo({ ...bookingInfo, date: `${e.target.value}` }) }} className=" focus:outline-0 pb-2 border-b-2 mt-6" type="date"></input>
+                            <input onChange={(e) => { setBookingInfo({ ...bookingInfo, Guests: `${e.target.value}` }) }} className=" focus:outline-0 pb-2 border-b-2 w-full mt-6 ml-10" type="number" placeholder="Guest"></input>
                         </div>
                     </div>
 
@@ -192,7 +192,7 @@ const TourDetail = () => {
                         <h1 className="font-bold">${tour.price + 10}</h1>
                     </div>
 
-                    <button onClick={()=>{submitBook()}} className="w-full text-white font-bold items-center justify-center bg-[#faa935] mt-4 rounded-full py-1 hover:shadow-lg">Book Now</button>
+                    <button onClick={() => { submitBook() }} className="w-full text-white font-bold items-center justify-center bg-[#faa935] mt-4 rounded-full py-1 hover:shadow-lg">Book Now</button>
                 </div>
             </div>
 

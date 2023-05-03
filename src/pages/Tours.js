@@ -12,7 +12,7 @@ const Tours = () => {
                 "accestoken": localStorage.getItem("token")
             }
 
-            let response = await fetch("http://localhost:5000/getTours", {
+            let response = await fetch("https://tour-travel-backend.onrender.com/getTours", {
                 method: "GET",
                 headers: headersList
             });

@@ -11,7 +11,7 @@ const FeaturedTours = () => {
                 "accestoken": localStorage.getItem("token")
             }
 
-            let response = await fetch("http://localhost:5000/getFeaturedTours", {
+            let response = await fetch("https://tour-travel-backend.onrender.com/getFeaturedTours", {
                 method: "GET",
                 headers: headersList
             });

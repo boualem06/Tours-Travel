@@ -6,7 +6,7 @@ const NewProduct = () => {
     const [selectedFile, setSelectedFile] = useState();
     const [successMsg, setSuccessMsg] = useState("");
     const [errMsg, setErrMsg] = useState("");
-    const [Product, setProduct] = useState({featured:false});
+    const [Product, setProduct] = useState({ featured: false });
     const [loading, setLoading] = useState(false);
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
@@ -42,7 +42,7 @@ const NewProduct = () => {
         console.log(Product)
         try {
             setLoading(true)
-            await fetch("http://localhost:5000/NewTour", {
+            await fetch("https://tour-travel-backend.onrender.com/NewTour", {
                 method: "POST",
                 body: JSON.stringify(Product),
                 headers: { "Content-Type": "application/json", "accestoken": localStorage.getItem('token') },
@@ -142,7 +142,7 @@ const NewProduct = () => {
                         ></textarea>
                     </div>
 
-                    
+
 
                     <div>
                         <div className="font-bold">Image of the Tour </div>
@@ -157,7 +157,7 @@ const NewProduct = () => {
                     </div>
 
                     <label class="inline-flex items-center">
-                        <input onChange={(e)=>{setProduct({ ...Product, featured: e.target.checked })}} type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" />
+                        <input onChange={(e) => { setProduct({ ...Product, featured: e.target.checked }) }} type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" />
                         <span class="ml-2 text-gray-700">Featured</span>
                     </label>
                 </div>

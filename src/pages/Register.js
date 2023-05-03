@@ -17,7 +17,7 @@ const Register = () => {
         if (!regex.test(userInfo.email)) {
             setError({ message: "invalide email" });
         } else {
-            fetch('http://127.0.0.1:5000/register', {
+            fetch('https://tour-travel-backend.onrender.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

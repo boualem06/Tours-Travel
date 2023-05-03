@@ -13,7 +13,7 @@ const Admin = () => {
 
 
 
-            let response = await fetch("http://localhost:5000/getBooks", {
+            let response = await fetch("https://tour-travel-backend.onrender.com/getBooks", {
                 method: "GET",
                 headers: headersList
             });
@@ -42,7 +42,7 @@ const Admin = () => {
             "id": e._id
         });
 
-        let response = await fetch("http://localhost:5000/deleteBook", {
+        let response = await fetch("https://tour-travel-backend.onrender.com/deleteBook", {
             method: "DELETE",
             body: bodyContent,
             headers: headersList

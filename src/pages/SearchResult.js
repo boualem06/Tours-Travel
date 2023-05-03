@@ -10,7 +10,7 @@ const SearchResult = () => {
                 "accestoken": localStorage.getItem('token')
             }
 
-            let response = await fetch(`http://127.0.0.1:5000/searchTour/${localStorage.getItem('Location')}/${localStorage.getItem('Distance')}/${localStorage.getItem('Max_People')}`, {
+            let response = await fetch(`https://tour-travel-backend.onrender.com/searchTour/${localStorage.getItem('Location')}/${localStorage.getItem('Distance')}/${localStorage.getItem('Max_People')}`, {
                 method: "GET",
                 headers: headersList
             });
