@@ -16,8 +16,8 @@ MongoDB for database management
 Stripe or PayPal for payment processing
 Material UI for component design
 
-#Getting Started
+# Getting Started
 To get started with the app, you'll need to clone the repository and install the necessary dependencies. You'll also need to set up the database connection string to connect to your MongoDB instance. Once everything is set up, you can start the app and begin browsing and booking tours.
 
-#Contributions
+# Contributions
 Contributions are welcome! If you'd like to contribute to the app, please submit a pull request with your changes. Please include a detailed description of the changes you've made and any relevant testing information.
